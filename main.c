@@ -9,7 +9,8 @@ char *ft_strcpy(char *dst, const char *src);
 int ft_strcmp(const char *s1, const char *s2);
 ssize_t ft_write(int fildes, const void *buf, size_t nbyte);
 ssize_t ft_read(int fildes, void *buf, size_t nbyte);
-           
+char *ft_strdup(const char *s1);
+
 extern int errno;
 
 int main(void)
@@ -51,5 +52,8 @@ int main(void)
 	close(fd);
 	printf("%lu\n", ft_read(15, lol2, 13));
 	printf("%lu\n", read(15, lol2, 13));
+	
+	printf("\nSTRDUP\n");
+	printf("%s\n", ft_strdup("YOYOYOYOYOY I CAN DO THISS"));
 	return 0;
 }
