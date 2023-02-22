@@ -5,8 +5,7 @@
 
 	section .text
 _ft_strcpy:
-	cmp rdi, 0
-
+;protection?
 	push rdi
 
 loop:
