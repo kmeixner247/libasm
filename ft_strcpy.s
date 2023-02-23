@@ -16,9 +16,9 @@
 ;	Not protected against dst overflow
 ;------------------------------------------------------------------------------
 
-	global _ft_strcpy
+	global	_ft_strcpy
 
-	section .text
+	section	.text
 _ft_strcpy:
 	push	rdi				;	save dst pointer to restore later
 
