@@ -1,7 +1,16 @@
-; ssize_t read(int fildes, void *buf, size_t nbyte);
-; TODO:
-; comments
-; 'norm'
+;------------------------------------------------------------------------------
+;	ft_read
+;
+;	DESCRIPTION:
+;	C PROTOTYPE:
+;	ssize_t read(int fildes, void *buf, size_t nbyte);
+;
+;	INPUT REGISTERS:
+;	rdi	:	fildes
+;	rsi	:	buf 
+;	rdx	:	nbyte
+;------------------------------------------------------------------------------
+
 	global	_ft_read
 	extern	___error
 

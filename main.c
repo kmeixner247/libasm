@@ -40,48 +40,48 @@ void print_list(t_list **head)
 
 int main(void)
 {
-	// char lol[69];
+	char lol[69];
 	char lol2[69];
-	// printf("\nSTRLEN\n");
-	// printf("%lu\t:\t", ft_strlen("asdf"));
-	// printf("%lu\n", strlen("asdf"));
+	printf("\nSTRLEN\n");
+	printf("%lu\t:\t", ft_strlen("asdf"));
+	printf("%lu\n", strlen("asdf"));
 
-	// printf("\nSTRCPY\n");
-	// printf("%s\t:\t", ft_strcpy(lol, "Hello!"));
-	printf("%s\n", strcpy(lol2, NULL));
+	printf("\nSTRCPY\n");
+	printf("%s\t:\t", ft_strcpy(lol, "Hello!"));
+	printf("%s\n", strcpy(lol2, "Hello!"));
 
-	// printf("\nSTRCMP\n");
-	// printf("%d\t:\t", ft_strcmp("3", "2"));
-	// printf("%d\n", strcmp("3", "2"));
-	// printf("%d\t:\t", ft_strcmp("2", "3"));
-	// printf("%d\n", strcmp("2", "3"));
-	// printf("%d\t:\t", ft_strcmp("2", "2"));
-	// printf("%d\n", strcmp("2", "2"));
-	// printf("%d\t:\t", ft_strcmp("", "2"));
-	// printf("%d\n", strcmp("", "2"));
+	printf("\nSTRCMP\n");
+	printf("%d\t:\t", ft_strcmp("A", "Z"));
+	printf("%d\n", strcmp("A", "Z"));
+	printf("%d\t:\t", ft_strcmp("Z", "A"));
+	printf("%d\n", strcmp("Z", "A"));
+	printf("%d\t:\t", ft_strcmp("A", "A"));
+	printf("%d\n", strcmp("A", "A"));
+	printf("%d\t:\t", ft_strcmp("", "2"));
+	printf("%d\n", strcmp("", "2"));
 
-	// printf("\nWRITE\n");
-	// printf("%lu\n", ft_write(1, "HELLO YOYOYO\t", 13));
-	// printf("%lu\n", write(1, "HELLO YOYOYO\t", 13));
-	// printf("%lu\n", ft_write(3, "HELLO YOYOYO\t", 13));
-	// printf("%lu\n", write(3, "HELLO YOYOYO\t", 13));
+	printf("\nWRITE\n");
+	printf("%ld\n", ft_write(1, "HELLO YOYOYO\t", 13));
+	printf("%ld\n", write(1, "HELLO YOYOYO\t", 13));
+	printf("%ld\n", ft_write(3, "HELLO YOYOYO\t", 13));
+	printf("%ld\n", write(3, "HELLO YOYOYO\t", 13));
 
-	// printf("\nREAD\n");
-	// int fd = open("truth.txt", O_RDONLY);
-	// printf("%lu", ft_read(fd, lol, 13));
-	// printf("\t%s\n", lol);
-	// close(fd);
-	// fd = open("truth.txt", O_RDONLY);
-	// printf("%lu", read(fd, lol2, 13));
-	// printf("\t%s\n", lol2);
-	// close(fd);
-	// printf("%lu\n", ft_read(15, lol2, 13));
-	// printf("%lu\n", read(15, lol2, 13));
+	printf("\nREAD\n");
+	int fd = open("truth.txt", O_RDONLY);
+	printf("%lu", ft_read(fd, lol, 13));
+	printf("\t%s\n", lol);
+	close(fd);
+	fd = open("truth.txt", O_RDONLY);
+	printf("%lu", read(fd, lol2, 13));
+	printf("\t%s\n", lol2);
+	close(fd);
+	printf("%lu\n", ft_read(15, lol2, 13));
+	printf("%lu\n", read(15, lol2, 13));
 	
-	// printf("\nSTRDUP\n");
-	// printf("%s\n", ft_strdup("YOYOYOYOYOY I CAN DO THISS"));
-	// printf("\nATOI_BASE\n");
-	// printf("%d\n", ft_atoi_base("    FFasdf", "AF"));
+	printf("\nSTRDUP\n");
+	printf("%s\n", ft_strdup("YOYOYOYOYOY I CAN DO THISS"));
+	printf("\nATOI_BASE\n");
+	printf("%d\n", ft_atoi_base("    FFasdf", "AF"));
 
 	// char *s1 = "ONE";
 	// char *s2 = "TWO";

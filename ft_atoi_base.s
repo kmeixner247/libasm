@@ -1,11 +1,21 @@
+;------------------------------------------------------------------------------
+;	ft_atoi_base
+;
+;	DESCRIPTION:
+;
+;	C PROTOTYPE:
 ;	int ft_atoi_base(char *str, char *base);
+;
+;	INPUT REGISTERS:
 ;	rdi	:	str
 ;	rsi	:	base
+;------------------------------------------------------------------------------
 ;	rdx	:	stringlength of base
 ;	rcx	:	index of char in base
 ;	TO DO:
 ;	base validation
 ;	input protection
+;	negative
 ;	comments
 ;	'norm'
 
