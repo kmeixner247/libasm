@@ -12,7 +12,7 @@
 ;		struct s_list *next;
 ;	} t_list;
 ;
-;	PROTOTYPE:
+;	C PROTOTYPE:
 ;	void ft_list_push_front(t_list **begin_list, void *data)
 ;
 ;	INPUT REGISTERS:
@@ -20,16 +20,16 @@
 ;	rsi	:	data
 ;------------------------------------------------------------------------------
 
-	global _ft_list_push_front
-	extern _malloc
+			global	_ft_list_push_front
+			extern	_malloc
 
-	section .text
+			section	.text
 
 _ft_list_push_front:
 			push	rsp						;	save stack pointer to restore later
 			push	rdi						;	save begin_list on stack
 			push	rsi						;	save data on stack
-			mov		rdi,		listsize	;	prepare argument for malloc
+			mov		rdi,		list_size	;	prepare argument for malloc
 			call	_malloc					;	call malloc with sizeof(t_list)
 			pop		rsi						;	get back data from stack
 			pop		rdi						;	get back begin_list from stack
@@ -44,5 +44,5 @@ return:
 			pop		rsp						;	restore stack pointer
 			ret
 
-			section .data
-listsize:	equ		16
+			section	.data
+list_size:	equ		16
