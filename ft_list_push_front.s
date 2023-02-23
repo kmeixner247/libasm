@@ -6,11 +6,11 @@
 ;	and inserts it at the beginning of a list
 ;
 ;	LIST STRUCT:
-;	typedef struct s_list
+;	typedef struct	s_list
 ;	{
-;		void *data;
-;		struct s_list *next;
-;	} t_list;
+;		void	*data;
+;		struct	s_list *next;
+;	}	t_list;
 ;
 ;	C PROTOTYPE:
 ;	void ft_list_push_front(t_list **begin_list, void *data)
