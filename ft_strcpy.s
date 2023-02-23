@@ -1,5 +1,9 @@
 ;	char *	strcpy(char *dst, const char *src);
 ;	dst: rdi, src: rsi
+;	TODO:
+;	input protection
+;	comments
+;	'norm'
 
 	global _ft_strcpy
 

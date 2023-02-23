@@ -1,4 +1,6 @@
-
+;	TODO
+;	comments
+;	'norm'
 
 	global _ft_strlen
 

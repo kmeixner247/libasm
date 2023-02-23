@@ -3,6 +3,11 @@
 ;	rsi	:	base
 ;	rdx	:	stringlength of base
 ;	rcx	:	index of char in base
+;	TO DO:
+;	base validation
+;	input protection
+;	comments
+;	'norm'
 
 	global _ft_atoi_base
 
@@ -35,7 +40,6 @@ basecheck_inc:
 	jmp basecheck_cmp
 
 convert:
-
 	imul rax, rdx
 	add	rax, rcx
 	inc rdi

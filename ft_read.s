@@ -1,5 +1,7 @@
 ; ssize_t read(int fildes, void *buf, size_t nbyte);
-
+; TODO:
+; comments
+; 'norm'
 	global _ft_read
 	extern ___error
 

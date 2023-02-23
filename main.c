@@ -1,3 +1,8 @@
+/*	TODO:
+/	more tests
+/	better tests
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
@@ -57,6 +62,6 @@ int main(void)
 	printf("\nSTRDUP\n");
 	printf("%s\n", ft_strdup("YOYOYOYOYOY I CAN DO THISS"));
 	printf("\nATOI_BASE\n");
-	printf("%d\n", ft_atoi_base("FF", "AF"));
+	printf("%d\n", ft_atoi_base("    FFasdf", "AF"));
 	return 0;
 }

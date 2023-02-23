@@ -1,5 +1,8 @@
 ; ssize_t write(int fildes, const void *buf, size_t nbyte);
 ; fildes rdi  - buf rsi - nbyte rdx
+;	TODO:
+;	comments
+;	'norm'
 
 	global _ft_write
 	extern ___error

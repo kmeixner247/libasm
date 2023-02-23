@@ -1,5 +1,9 @@
 ;	strcmp(const char *s1, const char *s2);
 ;	s1: rdi, s2: rsi
+;	TODO:
+;	input protection
+;	comments
+;	'norm'
 	global _ft_strcmp
 
 	section .text

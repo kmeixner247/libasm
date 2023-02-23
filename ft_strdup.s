@@ -1,5 +1,9 @@
 ;	char *strdup(const char *s1);
 ;	s1 in rdi
+;	TODO:
+;	input protection
+;	comments
+;	'norm'
 
 	global _ft_strdup
 	extern _malloc
