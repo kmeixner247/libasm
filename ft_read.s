@@ -2,21 +2,24 @@
 ; TODO:
 ; comments
 ; 'norm'
-	global _ft_read
-	extern ___error
+	global	_ft_read
+	extern	___error
 
-	section .text
+	section	.text
 _ft_read:
-	mov	rax, 0x02000003
+	mov		rax,	0x02000003	;	prepare syscall read
 	syscall
-	jc error
-	ret
+	jc		error				;	check for error flag
+	jmp		return				;	return read return otherwise
 
 error:
-	push rax
-	call ___error
-	mov rdi, rax
-	pop rax
-	mov [rdi], rax
-	mov rax, -1
+	push	rax					;	store read return (error code) on stack
+	call	___error			;	call to find errno memory location
+	mov		rdi, rax			;	save errno memory location in rdi
+	pop		rax					;	restore error code
+	mov		[rdi], rax			;	write error code into errno
+	mov		rax, -1				;	prepare return value -1
+	jmp		return
+
+return:
 	ret
