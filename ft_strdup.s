@@ -12,6 +12,7 @@ strlen_loop:
 	cmp	byte[rdi + rax], 0
 	jne strlen_increment
 
+malloc_and_stuff:
 	push rdi
 	mov rdi, rax
 	call _malloc
@@ -26,12 +27,12 @@ strlen_increment:
 
 cpy_loop:
 	cmp byte[rsi], 0
-	jne cpy_copy
+	jne cpy_increment
 	mov byte[rdi], 0
 	pop rax
 	ret
 
-cpy_copy:
+cpy_increment:
 	mov dl, byte[rsi]
 	mov byte[rdi], dl
 	inc rdi
