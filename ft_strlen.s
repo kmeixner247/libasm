@@ -1,19 +1,32 @@
-;	TODO
-;	comments
-;	'norm'
+;------------------------------------------------------------------------------
+;	ft_strlen
+;
+;	DESCRIPTION:
+;	Counts and returns the length of a string
+;
+;	C PROTOTYPE:
+;	size_t strlen(const char *s);
+;
+;	INPUT REGISTERS:
+;	rdi:	s
+;------------------------------------------------------------------------------
 
-	global _ft_strlen
+	global	_ft_strlen
 
-	section .text
+	section	.text
+
 _ft_strlen:
-	xor rax, rax				; set rax to 0, storing the length
+	xor		rax,	rax				;	initialize return value
 
-loop:
-	cmp	byte[rdi + rax], 0		; check for null byte
-	jne increment				; continue the loop if null byte not reached
+strlen_cmp:
+	cmp		byte[rdi + rax], 0		;	check for null byte
+	jne 	increment				;	continue the loop if null byte not reached
+	jmp		return
 
-	ret							; return (why is it rax?)
 
-increment:
-	inc rax
-	jmp loop
+strlen_inc:
+	inc		rax						;	increment return value
+	jmp		strlen_cmp
+
+return:
+	ret
