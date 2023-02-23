@@ -72,7 +72,3 @@ strlen_inc:
 
 return:
 	ret
-
-return1:
-	mov rax, 1234
-	ret
