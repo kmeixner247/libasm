@@ -9,12 +9,14 @@
 ;
 ;	INPUT REGISTERS:
 ;	rdi:	s
+;
+;	NOTES:
+;	not protected against NULL input, because the original (man 3 strlen) isn't
 ;------------------------------------------------------------------------------
 
 	global	_ft_strlen
 
 	section	.text
-
 _ft_strlen:
 	xor		rax,	rax				;	initialize return value
 

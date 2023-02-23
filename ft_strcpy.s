@@ -1,28 +1,40 @@
+;------------------------------------------------------------------------------
+;	ft_strcpy
+;
+;	DESCRIPTION:
+;	Copies all bytes from a source string into a destination string
+;
+;	C PROTOTYPE:
 ;	char *	strcpy(char *dst, const char *src);
-;	dst: rdi, src: rsi
-;	TODO:
-;	input protection
-;	comments
-;	'norm'
+;
+;	INPUT REGISTERS:
+;	rdi:	dst
+;	rsi:	src
+;
+;	NOTES:
+;	Not protected against NULL input, because the original (man 3 strcpy) isn't
+;	Not protected against dst overflow
+;------------------------------------------------------------------------------
 
 	global _ft_strcpy
 
 	section .text
 _ft_strcpy:
-;protection?
-	push rdi
+	push	rdi				;	save dst pointer to restore later
 
-loop:
-	cmp byte[rsi], 0
-	jne copy
-	mov byte[rdi], 0
-	pop rax
+strcmp_cmp:
+	cmp		byte[rsi], 0	;	check for null terminator of src
+	je		return			;	return if null terminator reached
+	jmp		strcmp_inc
+
+strcmp_inc:
+	mov		dl, byte[rsi]	;	temp = *src
+	mov		byte[rdi], dl	;	*dest = temp
+	inc		rdi				;	dest++
+	inc		rsi				;	src++
+	jmp		strcmp_cmp
+
+return:
+	mov		byte[rdi], 0	;	add null terminator to dest string
+	pop		rax				;	restore dst pointer from stack
 	ret
-
-copy:
-	mov dl, byte[rsi]
-	mov byte[rdi], dl
-	inc rdi
-	inc rsi
-	jmp loop
-

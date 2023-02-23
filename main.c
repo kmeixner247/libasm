@@ -41,14 +41,14 @@ void print_list(t_list **head)
 int main(void)
 {
 	// char lol[69];
-	// char lol2[69];
+	char lol2[69];
 	// printf("\nSTRLEN\n");
 	// printf("%lu\t:\t", ft_strlen("asdf"));
 	// printf("%lu\n", strlen("asdf"));
 
 	// printf("\nSTRCPY\n");
 	// printf("%s\t:\t", ft_strcpy(lol, "Hello!"));
-	// printf("%s\n", strcpy(lol2, "Hello!"));
+	printf("%s\n", strcpy(lol2, NULL));
 
 	// printf("\nSTRCMP\n");
 	// printf("%d\t:\t", ft_strcmp("3", "2"));
@@ -83,31 +83,31 @@ int main(void)
 	// printf("\nATOI_BASE\n");
 	// printf("%d\n", ft_atoi_base("    FFasdf", "AF"));
 
-	char *s1 = "ONE";
-	char *s2 = "TWO";
-	char *s3 = "THREE";
-	char *s4 = "FOUR";
-	char *s0 = "ZERO";
-	t_list *l1;
-	l1 = malloc(sizeof(t_list));
-	t_list *l2 = malloc(sizeof(t_list));
-	t_list *l3 = malloc(sizeof(t_list));
-	t_list *l4 = malloc(sizeof(t_list));
-	l1->data = s1;
-	l2->data = s2;
-	l3->data = s3;
-	l4->data = s4;
-	l1->next = l2;
-	l2->next = l3;
-	l3->next = l4;
-	l4->next = NULL;
-	t_list **head = &l1;
-	print_list(head);
-	printf("%p\n", *head);
-	printf("%s\n", (*head)->data);
-	ft_list_push_front(head, s0);
-	printf("%p\n", *head);
-	printf("%s\n", (*head)->data);
-	print_list(head);
+	// char *s1 = "ONE";
+	// char *s2 = "TWO";
+	// char *s3 = "THREE";
+	// char *s4 = "FOUR";
+	// char *s0 = "ZERO";
+	// t_list *l1;
+	// l1 = malloc(sizeof(t_list));
+	// t_list *l2 = malloc(sizeof(t_list));
+	// t_list *l3 = malloc(sizeof(t_list));
+	// t_list *l4 = malloc(sizeof(t_list));
+	// l1->data = s1;
+	// l2->data = s2;
+	// l3->data = s3;
+	// l4->data = s4;
+	// l1->next = l2;
+	// l2->next = l3;
+	// l3->next = l4;
+	// l4->next = NULL;
+	// t_list **head = &l1;
+	// print_list(head);
+	// printf("%p\n", *head);
+	// printf("%s\n", (*head)->data);
+	// ft_list_push_front(head, s0);
+	// printf("%p\n", *head);
+	// printf("%s\n", (*head)->data);
+	// print_list(head);
 	return 0;
 }
