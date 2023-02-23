@@ -20,7 +20,7 @@ _ft_strlen:
 
 strlen_cmp:
 	cmp		byte[rdi + rax], 0		;	check for null byte
-	jne 	increment				;	continue the loop if null byte not reached
+	jne 	strlen_inc				;	continue the loop if null byte not reached
 	jmp		return
 
 
