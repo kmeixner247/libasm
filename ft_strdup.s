@@ -17,43 +17,44 @@
 	extern	_malloc
 
 	section	.text
-_ft_strdup:
-	xor		rax,	rax
-	jmp		strlen_cmp
 
-malloc_and_stuff:
-	push	rdi
-	mov		rdi,	rax
-	inc		rdi
-	call	_malloc
-	cmp		rax,	0
-	jz		return
-	pop		rsi
-	mov		rdi,	rax
-	push	rdi
+_ft_strdup:
+	xor		rax,	rax				;	set rax to 0
+	jmp		strlen_cmp				;	get length of input string
+
+malloc:
+	push	rdi						;	store s1 pointer
+	mov		rdi,	rax				;	prepare length parameter for malloc
+	inc		rdi						;	i
+	call	_malloc					;	extern malloc call
+	cmp		rax,	0				;	check fur malloc error return
+	jz		return					;	return if null
+	pop		rsi						;	restore s1 pointer
+	mov		rdi,	rax				;	move allocated memory address to rdi
+	push	rdi						;	store pointer to new memory for return
 	jmp		cpy_cmp
 
 strlen_cmp:
-	cmp		byte[rdi + rax],	0
-	jne		strlen_inc
-	jmp		malloc_and_stuff
+	cmp		byte[rdi + rax],	0	;	check for null terminator
+	jne		strlen_inc				;	if \0 not reached, keep incrementing
+	jmp		malloc					;	otherwise, go to malloc
 
 strlen_inc:
-	inc		rax
+	inc		rax						;	i++
 	jmp		strlen_cmp
 
 cpy_cmp:
-	cmp		byte[rsi],	0
-	jne		cpy_inc
-	mov		byte[rdi],	0
-	pop		rax
+	cmp		byte[rsi],	0			;	check for null terminator of source
+	jne		cpy_inc					;	continue copying if null not reached
+	mov		byte[rdi],	0			;	terminate dest string
+	pop		rax						;	restore pointer to new alloced memory
 	jmp		return
 
 cpy_inc:
-	mov		dl,	byte[rsi]
-	mov		byte[rdi],	dl
-	inc		rdi
-	inc		rsi
+	mov		dl,	byte[rsi]			;	tmp = *src
+	mov		byte[rdi],	dl			;	*dst = tmp
+	inc		rdi						;	dst++
+	inc		rsi						;	src++
 	jmp		cpy_cmp
 
 return:
