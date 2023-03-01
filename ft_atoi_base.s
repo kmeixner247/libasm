@@ -24,6 +24,7 @@
 	section .text
 
 _ft_atoi_base:
+	push	rbx
 	jmp skip_whitespace_cmp
 
 base_length:
@@ -85,4 +86,5 @@ strlen_inc:
 	jmp strlen_cmp
 
 return:
+	pop	rbx
 	ret
