@@ -34,15 +34,15 @@ strcmp_inc:
 	jmp		strcmp_cmp		;	
 
 less:
-	mov		rax, -1			;	returning -1 if s1<s2
+	mov		eax, -1			;	returning -1 if s1<s2
 	jmp		return
 
 more:
-	mov		rax, 1			;	returning 1 if s1>s2
+	mov		eax, 1			;	returning 1 if s1>s2
 	jmp		return
 
 same:
-	xor		rax, rax		;	returning 0 if s1 == s2
+	xor		eax, eax		;	returning 0 if s1 == s2
 	jmp		return
 
 return:
