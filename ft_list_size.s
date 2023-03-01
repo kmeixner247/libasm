@@ -11,7 +11,7 @@
 ;		struct	s_list *next;
 ;	}	t_list;
 ;
-;	C PROTOTYPE:
+;	C PROTOTYPE:	
 ;	int ft_list_size(t_list *begin_list);
 ;
 ;	INPUT REGISTERS:

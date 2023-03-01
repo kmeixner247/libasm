@@ -25,11 +25,12 @@
 
 			section	.text
 _ft_list_push_front:
-			push	rsp						;	save stack pointer to restore later
 			push	rdi						;	save begin_list on stack
 			push	rsi						;	save data on stack
+			push	rbx						;	align stack
 			mov		rdi,		list_size	;	prepare argument for malloc
 			call	_malloc					;	call malloc with sizeof(t_list)
+			pop		rbx
 			pop		rsi						;	get back data from stack
 			pop		rdi						;	get back begin_list from stack
 			cmp		rax,		0			;	check for NULL return from malloc
@@ -40,7 +41,6 @@ _ft_list_push_front:
 			mov		[rdi],		rax			;	*begin_list = new
 
 return:
-			pop		rsp						;	restore stack pointer
 			ret
 
 			section	.data
