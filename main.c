@@ -26,7 +26,8 @@ typedef struct s_list
 void ft_list_push_front(t_list **begin_list, void *data);
 int ft_list_size(t_list *begin_list);
 void ft_list_sort(t_list **begin_list, int (*cmp)());
-
+// void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *));
+int ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *));
 extern int errno;
 
 void print_list(t_list **head)
@@ -39,6 +40,11 @@ void print_list(t_list **head)
 		i++;
 		temp = temp->next;
 	}
+}
+
+void nothing(void *lol) {
+	(void)lol;
+	return ;
 }
 
 int main(void)
@@ -87,11 +93,11 @@ int main(void)
 	printf("%d\n", ft_atoi_base("    FFasdf", "AF"));
 	// printf("sergjhslkdjrgjsjkldhg\n");
 
-	char *s0 = "9";
-	char *s1 = "2";
-	char *s2 = "5";
+	char *s0 = "5";
+	char *s1 = "3";
+	char *s2 = "2";
 	char *s3 = "3";
-	char *s4 = "7";
+	char *s4 = "1";
 	t_list *l1 = malloc(sizeof(t_list));
 	t_list *l2 = malloc(sizeof(t_list));
 	t_list *l3 = malloc(sizeof(t_list));
@@ -122,6 +128,14 @@ int main(void)
 
 	ft_list_sort(head, &strcmp);
 	print_list(head);
+	
+	printf("\nLIST_REMOVE_IF\n");
+	print_list(head);
+	printf("_____________\n");
+	ft_list_remove_if(head, "3", &strcmp, &nothing);
+	print_list(head);
+
 	printf("END\n");
+	
 	return 0;
 }

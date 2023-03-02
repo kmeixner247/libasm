@@ -21,7 +21,7 @@
 	;	r13	next node for cmp
 	;	r14	max-from-before
 	;	r15 prev-to-max
-;
+
 	global _ft_list_sort
 
 	section	.text
