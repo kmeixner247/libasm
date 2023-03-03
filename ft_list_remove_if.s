@@ -42,59 +42,59 @@ _ft_list_remove_if:
 	push	r14
 	push	r15
 
-	cmp		rdi,		0
+	cmp		rdi,		0					;	head input protection
 	jz		return
-	cmp		rsi,		0
+	cmp		rsi,		0					;	data_ref input protection
 	jz		return
-	cmp		rdx,		0
+	cmp		rdx,		0					;	cmp input protection
 	jz		return
-	cmp		rcx,		0
+	cmp		rcx,		0					;	free_fct input protection
 	jz		return
 
-	mov		rbp,		rdi
-	mov		rbx,		rsi
-	xor		r12,		r12
-	mov		r13,		[rbp]
-	mov		r14,		rdx
-	mov		r15,		rcx
+	mov		rbp,		rdi					;	init head
+	mov		rbx,		rsi					;	init data_ref
+	xor		r12,		r12					;	init prev_ptr = 0
+	mov		r13,		[rbp]				;	init current_pointer = *head
+	mov		r14,		rdx					;	init cmp
+	mov		r15,		rcx					;	init free_fct
 
 call_cmp:
-	cmp		r13,		0
+	cmp		r13,		0					;	null protection for curr ptr
 	jz		return
-	mov		rsi,		[r13]
-	mov		rdi,		rbx
-	push	rsp
-	call	r14
-	pop		rsp
-	cmp		eax,		0
-	jz		remove_node
-	jmp		list_iterate
+	mov		rsi,		[r13]				;	load content of curr ptr
+	mov		rdi,		rbx					;	load data_ref
+	push	rsp								;	align stack
+	call	r14								;	call cmp
+	pop		rsp								;	undo stack align push
+	cmp		eax,		0					;	check cmp return value
+	jz		remove_node						;	if return 0, delete the node
+	jmp		list_iterate					;	else continue through the list
 
 list_iterate:
-	mov		r12,		r13
-	mov		r13,		[r13+8]
-	cmp		r13,		0
-	jz		return
-	jmp		call_cmp
+	mov		r12,		r13					;	prev = curr
+	mov		r13,		[r13+8]				;	curr = curr->next
+	cmp		r13,		0					;	check if curr == 0
+	jz		return							;	in that case end is reached
+	jmp		call_cmp						;	else keep comparing
 
 remove_node:
-	mov		rsi,		[r13]
-	push	rsp
-	call	r15
-	pop		rsp
-	cmp		r12,		0
+	mov		rdi,		[r13]				;	load curr->data for free
+	push	rsp								;	align stack
+	call	r15								;	call free function
+	pop		rsp								;	undo stack align push
+	cmp		r12,		0					;	if prev is 0, curr is first
 	jz		remove_first
-	mov		rcx,		[r13+8]
-	mov		[r12+8],	rcx
-	mov		r13,		rcx
-	cmp		r13,		0
-	jz		return
-	jmp		call_cmp
+	mov		rcx,		[r13+8]				;	temp = curr->next
+	mov		[r12+8],	rcx					;	prev->next = temp
+	mov		r13,		rcx					;	curr = temp (next)
+	cmp		r13,		0					;	check if curr == 0
+	jz		return							;	in that case end is reached
+	jmp		call_cmp						;	else keep comparing
 
 remove_first:
-	mov		rcx,		[r13+8]
-	mov		[rbp],		rcx
-	mov		r13,		[rbp]
+	mov		rcx,		[r13+8]				;	temp = curr->next
+	mov		[rbp],		rcx					;	*head = temp
+	mov		r13,		rcx					;	curr = temp (next)
 	jmp		call_cmp
 
 return:
