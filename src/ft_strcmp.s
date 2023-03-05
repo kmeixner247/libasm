@@ -28,6 +28,7 @@ strcmp_cmp:
 	jg		more			;	if *s1>temp, jump to more
 
 strcmp_inc:
+	cmp		byte[rsi], 0
 	jz		same			;	if *s1 == 0, both strings are the same
 	inc		rdi				;	s1++
 	inc		rsi				;	s2++
