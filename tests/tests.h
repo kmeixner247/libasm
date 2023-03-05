@@ -8,4 +8,5 @@ char	*ft_strjoin(char const *s1, char const *s2);
 
 void	test_strlen();
 void	test_strcmp();
+void	test_strcpy();
 #endif

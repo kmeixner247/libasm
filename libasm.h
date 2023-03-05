@@ -1,6 +1,7 @@
 #ifndef LIBASM_H
 #define	LIBASM_H
 
+#include <string.h>
 #include <stdio.h>
 
 typedef struct s_list

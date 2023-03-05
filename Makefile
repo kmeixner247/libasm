@@ -16,10 +16,15 @@ OBJS		=	$(SRCS:.s=.o)
 TEST_DIR	=	tests/
 TEST_SRCS	=	$(TEST_DIR)test_utils.c \
 				$(TEST_DIR)ft_strlen_test.c \
-				$(TEST_DIR)ft_strcmp_test.c
+				$(TEST_DIR)ft_strcmp_test.c \
+				$(TEST_DIR)ft_strcpy_test.c \
+				$(TEST_DIR)ft_read_test.c \
+				$(TEST_DIR)ft_write_test.c \
+				$(TEST_DIR)ft_strdup_test.c
+
 
 CC			=	gcc
-CFLAGS		=	-Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS		=	-Wall -Werror -Wextra# -g -fsanitize=address
 
 NASM		=	nasm
 NASM_FLAGS	=	-f macho64
@@ -44,6 +49,10 @@ clean:
 fclean:			clean
 				rm -rf $(TEST_DIR)/ft_strlen/*
 				rm -rf $(TEST_DIR)/ft_strcmp/*
+				rm -rf $(TEST_DIR)/ft_strcpy/*
+				rm -rf $(TEST_DIR)/ft_read/*
+				rm -rf $(TEST_DIR)/ft_write/*
+				rm -rf $(TEST_DIR)/ft_strdup/*
 				rm -rf $(NAME)
 				rm -rf $(TEST_NAME)
 
