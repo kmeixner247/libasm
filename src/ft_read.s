@@ -9,6 +9,9 @@
 ;	rdi	:	fildes
 ;	rsi	:	buf 
 ;	rdx	:	nbyte
+;
+;	NOTE:
+;	No buffer overflow protection, since the original does not have it
 ;------------------------------------------------------------------------------
 
 	global	_ft_read
