@@ -44,7 +44,6 @@ static void list_push_front_test_ft() {
 	ft_listclear(&head);
 }
 
-
 static void list_push_front_test_st() {
 	t_list l0;
 	t_list l1;

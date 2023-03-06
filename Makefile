@@ -1,4 +1,6 @@
 NAME		=	libasm.a
+BNAME		=	libasm_bonus.a
+
 TEST_NAME	=	libasm_test
 
 SRCS_DIR	=	src/
@@ -19,7 +21,13 @@ BSRCS		= 	$(BSRCS_DIR)ft_atoi_base.s \
 BOBJS		=	$(BSRCS:.s=.o)
 
 TEST_DIR	=	tests/
-TEST_SUBS	=	ft_strlen ft_strcmp ft_strcpy ft_read ft_write ft_strdup
+TEST_SUBS	=	$(TEST_DIR)ft_strlen \
+				$(TEST_DIR)ft_strcmp \
+				$(TEST_DIR)ft_strcpy \
+				$(TEST_DIR)ft_read \
+				$(TEST_DIR)ft_write \
+				$(TEST_DIR)ft_strdup
+
 TEST_SRCS	=	$(TEST_DIR)test_utils.c \
 				$(TEST_DIR)ft_strlen_test.c \
 				$(TEST_DIR)ft_strcmp_test.c \
@@ -29,7 +37,12 @@ TEST_SRCS	=	$(TEST_DIR)test_utils.c \
 				$(TEST_DIR)ft_strdup_test.c
 
 BTEST_DIR	=	bonus_tests/
-BTEST_SUBS	=	ft_atoi_base ft_list_push_front ft_list_size ft_list_sort ft_list_remove_if
+BTEST_SUBS	=	$(BTEST_DIR)ft_atoi_base \
+				$(BTEST_DIR)ft_list_push_front \
+				$(BTEST_DIR)ft_list_size \
+				$(BTEST_DIR)ft_list_sort \
+				$(BTEST_DIR)ft_list_remove_if
+
 BTEST_SRCS	=	$(BTEST_DIR)bonus_test_utils.c \
 				$(BTEST_DIR)ft_atoi_base_test.c \
 				$(BTEST_DIR)ft_list_push_front_test.c \
@@ -47,43 +60,63 @@ NASM_FLAGS	=	-f macho64
 LD			=	ld
 LD_FLAGS	=	-macosx_version_min 10.7.0 -lSystem
 
-%.o:			%.s
-				$(NASM) $(NASM_FLAGS) $<
+PINK		= \033[0;35m
+GREEN		= \033[0;32m
+RED			= \033[0;31m
+RESET		= \033[0m
 
-all:			$(NAME) $(TEST_NAME)
+%.o:			%.s
+				@$(NASM) $(NASM_FLAGS) $< 
+				@echo -n .
+
+all:			$(NAME)
 
 $(NAME):		$(OBJS)
-				ar rcs $(NAME) $(OBJS)
+				@ar rcs $(NAME) $(OBJS)
+				@echo "$(GREEN) $(NAME) successfully compiled!$(RESET)"
 
-bonus:			$(OBJS) $(BOBJS)
-				ar rcs $(NAME) $(OBJS) $(BOBJS)
+bonus:			$(BNAME)
 
-$(TEST_NAME):	$(NAME)
-				$(CC) $(CFLAGS) -o $(TEST_NAME) $(NAME) main.c $(TEST_SRCS) $(BTEST_SRCS)
+$(BNAME):		$(OBJS) $(BOBJS)
+				@ar rcs $(BNAME) $(OBJS) $(BOBJS)
+				@echo "$(GREEN) bonus successfully compiled!$(RESET)"
 
-test:			$(TEST_NAME)
-				./$(TEST_NAME)
-				python3 script.py
+test:			$(NAME)
+				@rm -rf $(TEST_SUBS)
+				@$(CC) $(CFLAGS) -o $(TEST_NAME) $(NAME) main.c $(TEST_SRCS)
+				@mkdir $(TEST_SUBS)
+				@./$(TEST_NAME)
+				@python3 test.py
+
+testbonus:		$(BNAME) bonus
+				@rm -rf $(TEST_SUBS)
+				@rm -rf $(BTEST_SUBS)
+				@$(CC) $(CFLAGS) -o $(TEST_NAME) $(BNAME) main_bonus.c $(TEST_SRCS) $(BTEST_SRCS)
+				@mkdir $(TEST_SUBS) $(BTEST_SUBS)
+				@./$(TEST_NAME)
+				@python3 test.py
+				@python3 test_bonus.py
+
+cute:			
+				@echo "$(PINK)You are so cute$(RESET)"
 
 clean:
-				rm -rf $(OBJS) $(BOBJS)
+				@rm -rf $(OBJS) $(BOBJS)
 
 fclean:			clean
-				rm -rf $(TEST_DIR)/ft_strlen/*
-				rm -rf $(TEST_DIR)/ft_strcmp/*
-				rm -rf $(TEST_DIR)/ft_strcpy/*
-				rm -rf $(TEST_DIR)/ft_read/*
-				rm -rf $(TEST_DIR)/ft_write/*
-				rm -rf $(TEST_DIR)/ft_strdup/*
-				rm -rf $(BTEST_DIR)/ft_atoi_base/*
-				rm -rf $(BTEST_DIR)/ft_list_push_front/*
-				rm -rf $(BTEST_DIR)/ft_list_size/*
-				rm -rf $(BTEST_DIR)/ft_list_sort/*
-				rm -rf $(BTEST_DIR)/ft_list_remove_if/*
-				rm -rf $(NAME)
-				rm -rf $(TEST_NAME)
+				@rm -rf $(TEST_SUBS)
+				@echo -n .
+				@rm -rf $(BTEST_SUBS)
+				@echo -n .
+				@rm -rf $(NAME)
+				@echo -n .
+				@rm -rf $(BNAME)
+				@echo -n .
+				@rm -rf $(TEST_NAME)
+				@echo -n .
+				@echo "$(RED) clean successful!$(RESET)"
 
 re:				fclean $(NAME)
 
-.PHONY:			all bonus test clean fclean
+.PHONY:			all bonus test testbonus clean fclean re cute
 
